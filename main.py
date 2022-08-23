@@ -7,14 +7,17 @@ import os
 import random
 
 today = datetime.now()
+str_today = str(today)
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
+SchoolDay = os.environ['SCHOOLDAY']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
 user_id = os.environ["USER_ID"]
+user_id1 = os.environ["USER_ID1"]
 template_id = os.environ["TEMPLATE_ID"]
 
 
@@ -33,6 +36,11 @@ def get_birthday():
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
   return (next - today).days
+def get_SchoolDay():
+  next = datetime.strptime(str(date.today().year) + "-" + SchoolDay, "%Y-%m-%d")
+  if next < datetime.now():
+    next = next.replace(year=next.year + 1)
+  return (next - today).days
 
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
@@ -48,6 +56,8 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"datatime":{"value":str_today},"SchoolDay":{"value":get_SchoolDay()},"city":{"value":city},"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
+res1 = wm.send_template(user_id1, template_id, data)
+print(res1)
 print(res)
