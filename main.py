@@ -1,5 +1,5 @@
 from datetime import date
-from datetime import datetime, timedelta
+
 import datetime
 import time
 import math
@@ -34,7 +34,7 @@ def get_weather():
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
-
+from datetime import datetime, timedelta
 def get_birthday():
   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
   if next < datetime.now():
