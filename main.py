@@ -28,7 +28,7 @@ local_time = _date + timedelta(hours=8)
 today2 = local_time.strftime("%Y-%m-%d%H:%M:%S")
 str_today2 = str(today2)
 timeArray = time.strptime(str_today2, "%Y-%m-%d%H:%M:%S")
-today = int(time.mktime(timeArray))
+today = time.mktime(timeArray)
 str_today = str(today)
 
 def get_weather():
