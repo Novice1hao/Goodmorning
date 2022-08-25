@@ -1,7 +1,5 @@
 from datetime import datetime
 from datetime import date
-from datetime import timedelta
-from datetime import timezone
 import math
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
@@ -20,14 +18,12 @@ app_secret = os.environ["APP_SECRET"]
 
 user_id = os.environ["USER_ID"]
 user_id1 = os.environ["USER_ID1"]
-template_id = os.environ["TEMPLATE_ID"]
-
-utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
-SHA_TZ = timezone(
-    timedelta(hours=8),
-    name='Asia/Shanghai',
-)
-today =  utc_now.astimezone(SHA_TZ)
+template_id = os.environ["TEMPLATE_I
+                         
+                         
+_date = datetime.strptime(target_time, "%Y-%m-%dT%H:%M:%S.%fZ")
+local_time = _date + timedelta(hours=8)
+today = local_time.strftime("%Y-%m-%d %H:%M:%S")
 str_today = str(today)
 
 def get_weather():
@@ -45,6 +41,7 @@ def get_birthday():
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
   return (next - today).days
+                         
 def get_SchoolDay():
   next = datetime.strptime(str(date.today().year) + "-" + SchoolDay, "%Y-%m-%d")
   if next < datetime.now():
