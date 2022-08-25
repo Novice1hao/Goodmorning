@@ -26,7 +26,6 @@ def getBeijinTime():
      conn = httplib.HTTPConnection("www.beijing-time.org")
      conn.request("GET", "/time.asp")
      response = conn.getresponse()
-     print response.status, response.reason
      if response.status == 200:
        result = response.read()
        data = result.split("\r\n")
