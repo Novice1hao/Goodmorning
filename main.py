@@ -21,7 +21,7 @@ user_id = os.environ["USER_ID"]
 user_id1 = os.environ["USER_ID1"]
 template_id = os.environ["TEMPLATE_ID"]
                          
-today = datetime.now()+datetime.timedelta(hours=8)
+today = datetime.datetime.now()+datetime.timedelta(hours=8)
 str_today = str(today)
 
 def get_weather():
