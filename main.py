@@ -39,6 +39,8 @@ def getBeijinTime():
        beijinTimeStr = "%s/%s/%s %s:%s:%s" % (year, month, day, hrs, minute, sec)
        beijinTime = time.strptime(beijinTimeStr, "%Y/%m/%d %X")
        return beijinTim
+   except:
+       return null
 
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
