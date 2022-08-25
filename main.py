@@ -1,6 +1,5 @@
-from datetime import date
-
 import datetime
+from datetime import datetime, timedelta
 import time
 import math
 from wechatpy import WeChatClient
@@ -22,7 +21,8 @@ user_id = os.environ["USER_ID"]
 user_id1 = os.environ["USER_ID1"]
 template_id = os.environ["TEMPLATE_ID"]
                          
-today = datetime.datetime.now()+datetime.timedelta(hours=8)
+# today = datetime.datetime.now()+datetime.timedelta(hours=8)
+today = date.today()
 str_today = str(today)
 
 def get_weather():
@@ -34,10 +34,10 @@ def get_weather():
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
-from datetime import datetime, timedelta
+
 def get_birthday():
   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
-  if next < datetime.now():
+  if next < today:
     next = next.replace(year=next.year + 1)
   return (next - today).days
                          
