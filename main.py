@@ -22,9 +22,10 @@ template_id = os.environ["TEMPLATE_ID"]
                          
 today1 = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 str_today1 = str(today1)            
-# _date = datetime.strptime(str_today1, "%Y-%m-%dT%H:%M:%S")
-local_time = today1 + timedelta(hours=8)
-today = local_time.strftime("%Y-%m-%d%H:%M:%S")
+_date = datetime.strptime(str_today1, "%Y-%m-%dT%H:%M:%S")
+local_time = _date + timedelta(hours=8)
+today2 = local_time.strftime("%Y-%m-%d%H:%M:%S")
+today = int(time.mktime(today2))
 str_today = str(today)
 
 def get_weather():
