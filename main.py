@@ -1,6 +1,6 @@
 from datetime import date
 from datetime import datetime, timedelta
-import time
+
 import math
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
@@ -21,14 +21,7 @@ user_id = os.environ["USER_ID"]
 user_id1 = os.environ["USER_ID1"]
 template_id = os.environ["TEMPLATE_ID"]
                          
-today1 = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-str_today1 = str(today1)            
-_date = datetime.strptime(str_today1, "%Y-%m-%dT%H:%M:%S")
-local_time = _date + timedelta(hours=8)
-today2 = local_time.strftime("%Y-%m-%d%H:%M:%S")
-str_today2 = str(today2)
-timeArray = time.strptime(str_today2, "%Y-%m-%d%H:%M:%S")
-today = time.mktime(timeArray)
+today = datetime.now()+datetime.timedelta(hours=8)
 str_today = str(today)
 
 def get_weather():
